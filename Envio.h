@@ -4,21 +4,18 @@
 #include <ctime>
 #include "Producto.h" // Incluye la definición de la clase Producto
 #include "Paqueteria.h" // Incluye la definición de la clase Paqueteria
-#include "Lugar.h" // Incluye la definición de la clase Lugar si es necesario
+#include "Lugar.h" // Incluye la definición de la clase Lugar
 
-class Envio {
+class Envio : public Lugar {
 private:
     std::time_t llegada; // Fecha y hora de llegada del envío
     Producto producto; // Producto enviado
     Paqueteria paqueteria; // Empresa de paquetería
-    std::string estado; // Estado del lugar de entrega
-    std::string ciudad; // Ciudad del lugar de entrega
-    std::string direccion; // Dirección del lugar de entrega
 
 public:
     Envio() {} // Constructor por defecto
     Envio(std::time_t llegada, const Producto& producto, const Paqueteria& paqueteria, const std::string& estado, const std::string& ciudad, const std::string& direccion)
-        : llegada(llegada), producto(producto), paqueteria(paqueteria), estado(estado), ciudad(ciudad), direccion(direccion) {} // Constructor con parámetros
+        : Lugar(estado, ciudad, direccion), llegada(llegada), producto(producto), paqueteria(paqueteria) {} // Constructor con parámetros
 
     // Métodos getter y setter para la fecha y hora de llegada del envío
     std::time_t getLlegada() const;
@@ -32,17 +29,11 @@ public:
     Paqueteria getPaqueteria() const;
     void setPaqueteria(const Paqueteria& paqueteria);
 
-    // Métodos getter y setter para el estado del lugar de entrega
-    std::string getEstado() const;
-    void setEstado(const std::string& estado);
-
-    // Métodos getter y setter para la ciudad del lugar de entrega
-    std::string getCiudad() const;
-    void setCiudad(const std::string& ciudad);
-
-    // Métodos getter y setter para la dirección del lugar de entrega
-    std::string getDireccion() const;
-    void setDireccion(const std::string& direccion);
+    // Método para obtener la información del envío
+    std::string getInfo() const override {
+        return Lugar::getInfo() + ", Producto: " + producto.getNombre() + ", Precio: " + std::to_string(producto.getPrecio()) +
+               ", Paquetería: " + paqueteria.getEmpresa();
+    }
 };
 
 #endif // ENVIO_H
