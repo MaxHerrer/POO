@@ -29,33 +29,3 @@ Paqueteria Envio::getPaqueteria() const {
 void Envio::setPaqueteria(const Paqueteria& paqueteria) {
     this->paqueteria = paqueteria;
 }
-
-// Método getter para obtener el estado del lugar de entrega
-std::string Envio::getEstado() const {
-    return estado;
-}
-
-// Método setter para establecer el estado del lugar de entrega
-void Envio::setEstado(const std::string& estado) {
-    this->estado = estado;
-}
-
-// Método getter para obtener la ciudad del lugar de entrega
-std::string Envio::getCiudad() const {
-    return ciudad;
-}
-
-// Método setter para establecer la ciudad del lugar de entrega
-void Envio::setCiudad(const std::string& ciudad) {
-    this->ciudad = ciudad;
-}
-
-// Método getter para obtener la dirección del lugar de entrega
-std::string Envio::getDireccion() const {
-    return direccion;
-}
-
-// Método setter para establecer la dirección del lugar de entrega
-void Envio::setDireccion(const std::string& direccion) {
-    this->direccion = direccion;
-}
