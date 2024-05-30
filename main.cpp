@@ -1,9 +1,12 @@
 #include <iostream>
 #include <ctime> // Necesario para std::time
+#include <vector>
 #include "Lugar.h"
 #include "Paqueteria.h"
 #include "Producto.h"
 #include "Factura.h"
+#include "Almacen.h"
+#include "Envio.h"
 
 int main() {
     // Crear un producto
@@ -25,6 +28,19 @@ int main() {
     Factura factura;
     factura.setCostoEnvio(75.0);
     factura.setEnvios({ envio });
+
+    // Crear un almacén
+    Almacen almacen("Mexico", "CDMX", "Avenida Siempre Viva", 100, "Almacen Central", llegada);
+
+    // Crear un vector de punteros a Lugar
+    std::vector<Lugar*> lugares;
+    lugares.push_back(&envio); // Agregar un puntero a objeto Envio
+    lugares.push_back(&almacen); // Agregar un puntero a objeto Almacen
+
+    // Usar polimorfismo para imprimir información de cada lugar
+    for (const auto& lugar : lugares) {
+        std::cout << lugar->getInfo() << std::endl;
+    }
 
     // Imprimir la información del envío
     std::cout << "Información del envío:" << std::endl;
