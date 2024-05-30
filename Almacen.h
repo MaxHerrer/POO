@@ -28,6 +28,11 @@ public:
     // Métodos getter y setter para la descripción del almacén
     std::string getDescripcion() const;
     void setDescripcion(const std::string& descripcion);
+
+    // Sobrecarga del método virtual para obtener información del almacén
+    std::string getInfo() const override {
+        return Lugar::getInfo() + ", Capacidad: " + std::to_string(capacidad) + ", Descripcion: " + descripcion + ", Llegada: " + std::ctime(&llegada);
+    }
 };
 
 #endif // ALMACEN_H
