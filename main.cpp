@@ -47,5 +47,10 @@ int main() {
     // Mostrar la información de la factura
     std::cout << factura.getInfo() << std::endl;
 
+    // Mostrar la información del producto utilizando sobrecarga
+    std::cout << producto.getInfo() << std::endl;     
+    std::cout << producto.getInfo(true) << std::endl;    
+
     return 0;
 }
+
