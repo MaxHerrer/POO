@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <ctime>
 #include "Factura.h"
 #include "EnvioNormal.h"
@@ -7,7 +8,8 @@
 int main() {
     std::string nombreProducto, empresaPaqueteria, telefonoPaqueteria, numeroRastreo;
     std::string estado, ciudad, direccion;
-    double precioProducto, impuestos;
+    double precioProducto;
+    char tipoEnvio;
 
     // Solicitar datos del producto
     std::cout << "Ingrese el nombre del producto: ";
@@ -32,44 +34,31 @@ int main() {
     std::cout << "Ingrese la dirección del lugar: ";
     std::getline(std::cin, direccion);
 
-    // Crear objetos con los datos ingresados
-    Producto producto(nombreProducto, precioProducto);
-    Paqueteria paqueteria(empresaPaqueteria, telefonoPaqueteria, numeroRastreo);
-
-    // Preguntar al usuario el tipo de envío
-    std::string tipoEnvio;
-    std::cout << "¿Qué tipo de envío desea? (Normal / Rapido): ";
+    // Solicitar el tipo de envío al usuario
+    std::cout << "¿Qué tipo de envío desea? (N: Normal / R: Rapido): ";
     std::cin >> tipoEnvio;
+    std::cin.ignore();
 
+    // Crear objeto de tipo Envio según la elección del usuario
     Envio* envio = nullptr;
-
-    if (tipoEnvio == "Normal") {
-        envio = new EnvioNormal(time(0), producto, paqueteria, estado, ciudad, direccion);
-    } else if (tipoEnvio == "Rapido") {
-        envio = new EnvioRapido(time(0), producto, paqueteria, estado, ciudad, direccion);
+    if (tipoEnvio == 'N' || tipoEnvio == 'n') {
+        envio = new EnvioNormal(time(0), Producto(nombreProducto, precioProducto), Paqueteria(empresaPaqueteria, telefonoPaqueteria, numeroRastreo), estado, ciudad, direccion);
+    } else if (tipoEnvio == 'R' || tipoEnvio == 'r') {
+        envio = new EnvioRapido(time(0), Producto(nombreProducto, precioProducto), Paqueteria(empresaPaqueteria, telefonoPaqueteria, numeroRastreo), estado, ciudad, direccion);
     } else {
-        std::cout << "Tipo de envío no válido." << std::endl;
-        return 1;
-    }
-
-    // Solicitar datos de la factura
-    std::cout << "Ingrese el monto de impuestos: ";
-    std::cin >> impuestos;
-
-    // Calcular el costo total del envío
-    double costoTotalEnvio = envio->costoEnvio();
-
-    // Si es envío rápido, agregar cargo adicional
-    if (tipoEnvio == "Rapido") {
-        costoTotalEnvio += 50.0; // Cargo adicional por envío rápido
+        std::cout << "Opción de envío no válida." << std::endl;
+        return 1; 
     }
 
     // Crear el objeto Factura
-    Factura factura(*envio, impuestos + costoTotalEnvio);
+    Factura factura(envio);
 
-    // Mostrar la información de la factura
+    // Mostrar la factura
     std::cout << factura.getInfo() << std::endl;
 
+    // Liberar la memoria del objeto de envío
     delete envio;
+
     return 0;
 }
+
