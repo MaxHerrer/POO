@@ -6,7 +6,6 @@
 // Clase Producto
 class Producto {
 private:
-    // Modificadores de acceso: private
     std::string nombre;
     double precio;
 
