@@ -12,12 +12,12 @@ public:
 
     // Sobreescritura del método getInfo
     virtual std::string getInfo() const override {
-        return "Información específica de EnvioRapido";
+        return "Información específica del envio rapido";
     }
 
     // Sobreescritura del método costoEnvio
     virtual double costoEnvio() const override {
-        return Envio::costoEnvio() + 50.0; // Cargo adicional por envío rápido
+        return 25.0; // Costo base de envío rapido
     }
 };
 
