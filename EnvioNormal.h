@@ -14,6 +14,11 @@ public:
     virtual std::string getInfo() const override {
         return "Información específica del envio normal";
     }
+
+    // Implementación de costoEnvio()
+    virtual double costoEnvio() const override {
+        return 5.0; // Costo base de envío normal
+    }
 };
 
 #endif // ENVIONORMAL_H
