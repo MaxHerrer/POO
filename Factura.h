@@ -8,21 +8,21 @@
 
 class Factura {
 private:
-    const Envio& envio;
+    const Envio* envio;
     double impuestos;
     double total;
 
 public:
     // Constructor de Factura
-    Factura(const Envio& envio, double impuestos)
-        : envio(envio), impuestos(impuestos), total(envio.getProducto().getPrecio() + impuestos) {}
+    Factura(const Envio* envio) : envio(envio) {}
 
     std::string getInfo() const {
-        return "Información de la factura";
+        std::string info = "Información de la factura\n";
+        info += "Costo de envío: $" + std::to_string(envio->costoEnvio()) + "\n";
+        info += "Precio del producto: $" + std::to_string(envio->getProducto().getPrecio()) + "\n";
+        info += "Total: $" + std::to_string(envio->costoEnvio() + envio->getProducto().getPrecio()) + "\n";
+        return info;
     }
-
-    double getImpuestos() const { return impuestos; }
-    double getTotal() const { return total; }
 };
 
 #endif // FACTURA_H
