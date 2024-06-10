@@ -3,6 +3,7 @@
 
 #include <string>
 
+// Clase Paqueteria
 class Paqueteria {
 private:
     std::string empresa;
@@ -10,6 +11,7 @@ private:
     std::string numeroRastreo;
 
 public:
+    // Constructor de Paqueteria
     Paqueteria(const std::string& empresa, const std::string& telefono, const std::string& numeroRastreo)
         : empresa(empresa), telefono(telefono), numeroRastreo(numeroRastreo) {}
 
