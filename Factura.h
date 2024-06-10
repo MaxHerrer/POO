@@ -4,6 +4,8 @@
 #include <string>
 #include "Envio.h"
 
+//Clase Factura
+
 class Factura {
 private:
     const Envio& envio;
@@ -11,6 +13,7 @@ private:
     double total;
 
 public:
+    // Constructor de Factura
     Factura(const Envio& envio, double impuestos)
         : envio(envio), impuestos(impuestos), total(envio.getProducto().getPrecio() + impuestos) {}
 
@@ -18,8 +21,8 @@ public:
         return "Información de la factura";
     }
 
-    double getImpuestos() const;
-    double getTotal() const;
+    double getImpuestos() const { return impuestos; }
+    double getTotal() const { return total; }
 };
 
 #endif // FACTURA_H
