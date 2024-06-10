@@ -1,8 +1,8 @@
 #include <iostream>
-#include <vector>
 #include <ctime>
 #include "Factura.h"
-#include "EnvioConcreto.h"
+#include "EnvioNormal.h"
+#include "EnvioRapido.h"
 
 int main() {
     std::string nombreProducto, empresaPaqueteria, telefonoPaqueteria, numeroRastreo;
@@ -14,7 +14,7 @@ int main() {
     std::getline(std::cin, nombreProducto);
     std::cout << "Ingrese el precio del producto: ";
     std::cin >> precioProducto;
-    std::cin.ignore(); // Para limpiar el buffer
+    std::cin.ignore(); 
 
     // Solicitar datos de la paqueteria
     std::cout << "Ingrese la empresa de paquetería: ";
@@ -35,22 +35,41 @@ int main() {
     // Crear objetos con los datos ingresados
     Producto producto(nombreProducto, precioProducto);
     Paqueteria paqueteria(empresaPaqueteria, telefonoPaqueteria, numeroRastreo);
-    EnvioConcreto envio(time(0), producto, paqueteria, estado, ciudad, direccion); // Crear una instancia de la subclase concreta
+
+    // Preguntar al usuario el tipo de envío
+    std::string tipoEnvio;
+    std::cout << "¿Qué tipo de envío desea? (Normal / Rapido): ";
+    std::cin >> tipoEnvio;
+
+    Envio* envio = nullptr;
+
+    if (tipoEnvio == "Normal") {
+        envio = new EnvioNormal(time(0), producto, paqueteria, estado, ciudad, direccion);
+    } else if (tipoEnvio == "Rapido") {
+        envio = new EnvioRapido(time(0), producto, paqueteria, estado, ciudad, direccion);
+    } else {
+        std::cout << "Tipo de envío no válido." << std::endl;
+        return 1;
+    }
 
     // Solicitar datos de la factura
     std::cout << "Ingrese el monto de impuestos: ";
     std::cin >> impuestos;
 
+    // Calcular el costo total del envío
+    double costoTotalEnvio = envio->costoEnvio();
+
+    // Si es envío rápido, agregar cargo adicional
+    if (tipoEnvio == "Rapido") {
+        costoTotalEnvio += 20.0; // Cargo adicional por envío rápido
+    }
+
     // Crear el objeto Factura
-    Factura factura(envio, impuestos);
+    Factura factura(*envio, impuestos + costoTotalEnvio);
 
     // Mostrar la información de la factura
     std::cout << factura.getInfo() << std::endl;
 
-    // Mostrar la información del producto 
-    std::cout << producto.getInfo() << std::endl;     
-    std::cout << producto.getInfo(true) << std::endl;    
-
+    delete envio;
     return 0;
 }
-
