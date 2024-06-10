@@ -4,7 +4,6 @@
 #include "Envio.h"
 
 // Clase EnvioNormal
-
 class EnvioNormal : public Envio {
 public:
     // Constructor de EnvioNormal
