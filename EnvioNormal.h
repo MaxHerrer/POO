@@ -15,7 +15,7 @@ public:
         return "Información específica del envio normal";
     }
 
-    // Implementación de costoEnvio()
+    // Sobreescritura del método costoEnvio
     virtual double costoEnvio() const override {
         return 5.0; // Costo base de envío normal
     }
