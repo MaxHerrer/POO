@@ -61,7 +61,7 @@ int main() {
 
     // Si es envío rápido, agregar cargo adicional
     if (tipoEnvio == "Rapido") {
-        costoTotalEnvio += 20.0; // Cargo adicional por envío rápido
+        costoTotalEnvio += 50.0; // Cargo adicional por envío rápido
     }
 
     // Crear el objeto Factura
