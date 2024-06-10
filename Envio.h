@@ -13,11 +13,12 @@ public:
     Envio(std::time_t llegada, const Producto& producto, const Paqueteria& paqueteria, const std::string& estado, const std::string& ciudad, const std::string& direccion)
         : llegada(llegada), producto(producto), paqueteria(paqueteria), estado(estado), ciudad(ciudad), direccion(direccion) {}
 
-    // Método virtual puro
-    virtual std::string getInfo() const = 0;
+    // Destructor virtual
+    virtual ~Envio() {} 
 
-    // Método virtual para calcular el costo de envío
-    virtual double costoEnvio() const { return 20.0; } // Costo base de envío
+    // Funciones virtuales puras
+    virtual std::string getInfo() const = 0;
+    virtual double costoEnvio() const = 0;
 
     // Métodos de acceso
     std::time_t getLlegada() const { return llegada; }
