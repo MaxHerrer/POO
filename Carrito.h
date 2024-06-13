@@ -26,7 +26,7 @@ public:
     void mostrarPaqueterias();
     void seleccionarTipoEnvio(); 
     void agregarProducto(); 
-    void agregarProducto(const std::string& nombre, double precio); // Sobrecarga
+    void agregarProducto(std::string& nombre, double precio); // Sobrecarga
     void agregarPaqueteria(); 
     void agregarDireccion();
     void mostrarDireccion();
