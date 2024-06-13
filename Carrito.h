@@ -117,7 +117,7 @@ void Carrito::agregarProducto() {
 }
 
 // Método sobrecargado para agregar producto
-void Carrito::agregarProducto(const std::string& nombreProducto, double precioProducto) {
+void Carrito::agregarProducto(std::string& nombreProducto, double precioProducto) {
     productos.push_back(Producto(nombreProducto, precioProducto));
     std::cout << "Producto agregado al carrito.\n";
 }
