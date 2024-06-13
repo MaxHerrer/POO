@@ -42,7 +42,7 @@ public:
     }
 
     // Método para verificar si el lugar está vacío
-    bool isEmpty() const {
+    bool isEmpty() {
         return direccion.empty() || ciudad.empty() || estado.empty();
     }
 };
