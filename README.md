@@ -9,10 +9,10 @@ Para dar mas libertad a la hora de realizzar un envio el usuario tendra una gran
 # Subcompetencias a falta de acreditar
 
 + Identifico los casos que harían que el proyecto deje de funcionar:
-Ya en su gran mayoria del codigo no deberia haber casos comunes que puede hacer que este codigo deje de funcionar, por ejemplo:
-- Agregar de forma incorrecta un producto
-- Poner una direccion inexistente
-- Agregar una paqueteria inexistente
+Ya en su gran mayoria del codigo no deberia haber casos comunes que puede hacer que este codigo deje de funcionar, pero puede llegar a haber una que otra cosa que haga que deje de funcionar, por ejemplo los casos mas comunes pueden ser:
+Agregar de forma incorrecta un producto
+Poner una direccion inexistente
+Agregar una paqueteria inexistente
 
 + Se implementa de manera correcta los modificadores de acceso (Se encuentra en el codigo final)
 + Se implementa de manera correcta la sobrecarga y sobreescritura de métodos (Se encuentra en el codigo final)
